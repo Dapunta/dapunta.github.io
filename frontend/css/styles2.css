@@ -1,0 +1,185 @@
+/* Global Set */
+
+.hidden {
+    display: none;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    overflow-y: hidden;
+    pointer-events: none;
+}
+
+/* Animation */
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(+20vh);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+/* Menu APP */
+
+@media screen and (min-width: 500px) {
+
+.menu-box {
+    width: 20vw;
+    height: 8vh;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    top: 78%;
+    border: none;
+    border-radius: 6px;
+    pointer-events: all;
+    opacity: 0;
+    transform: translateY(+20vh);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.menu-box.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.spawn-apk {
+    background-color: rgba(0, 0, 0, 0.4);
+    /* box-shadow: 0px 2px 2px 0px white; */
+    backdrop-filter: blur(10px);
+    color: rgb(255, 255, 255);
+    height: 70%;
+    aspect-ratio: 1;
+    margin-left: 5px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    top: 82%;
+    pointer-events: all;
+    transition: transform 0.2s ease, background-color 0s ease;
+}
+
+.spawn-apk:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.spawn-apk.app-active {
+    transform: scale(0.9);
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.base-shown-app {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    pointer-events: all;
+    overflow: hidden;
+}
+
+.base-unshown-app {
+    display: none;
+}
+
+}
+
+@media screen and (max-width: 500px) {
+
+.menu-box {
+    /* background-color: black; */
+    width: 100vw;
+    height: 8vh;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    bottom: 8%;
+    border: none;
+    border-radius: 6px;
+    pointer-events: all;
+    opacity: 0;
+    transform: translateY(+20vh);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.menu-box.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.spawn-apk {
+    background-color: rgba(0, 0, 0, 0.4);
+    /* box-shadow: 0px 2px 2px 0px white; */
+    backdrop-filter: blur(10px);
+    color: rgb(255, 255, 255);
+    height: 70%;
+    aspect-ratio: 1;
+    margin-left: 5px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    top: 82%;
+    pointer-events: all;
+    transition: transform 0.2s ease, background-color 0s ease;
+}
+
+.spawn-apk:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.spawn-apk.app-active {
+    transform: scale(0.9);
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.base-shown-app {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    pointer-events: all;
+    overflow: hidden;
+}
+
+.base-unshown-app {
+    display: none;
+}
+
+.spawn-background-slide-button {
+    display: none;
+}
+
+}

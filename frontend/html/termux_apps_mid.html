@@ -1,0 +1,23 @@
+<div id="profile-card" class="type-app-termux">
+    <div class="header-card">
+        <div class="bullet-card left">
+            <div class="bullet-bullet red" onclick="activateLogo('termux', false); activateApp('termux', false); backgroundSlider()"></div>
+            <div class="bullet-bullet yellow"></div>
+            <div class="bullet-bullet green"></div>
+        </div>
+        <div class="welcome-header">welcome.py</div>
+        <div class="bullet-card right">
+            <div class="bullet-bullet green"></div>
+            <div class="bullet-bullet yellow"></div>
+            <div class="bullet-bullet red" onclick="activateLogo('termux', false); activateApp('termux', false); backgroundSlider()"></div>
+        </div>
+    </div>
+    <div class="terminal-container">
+        <div class="header-terminal">
+            <span id="printing" class="print-header-terminal"></span>
+        </div>
+        <div id="body-terminal" class="body-terminal">
+            <input id="terminal-input" class="row-terminal-input" type="text" onkeydown="handleKeyDown(event)" autocomplete="off"></input>
+        </div>
+    </div>
+</div>

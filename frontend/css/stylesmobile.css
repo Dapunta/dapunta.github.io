@@ -1,0 +1,129 @@
+@media screen and (max-width: 500px) {
+
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+.scale-box {
+    width: 100vw;
+    height: 100vh;
+    padding-left: 0.2vw;
+    padding-right: 0.2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transform: scale(1.2);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.scale-box.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.content-box {
+    width: 98vw;
+    height: 24vh;
+    flex: 20%;
+    flex-shrink: 0;
+    margin-top: 0.5vh;
+    margin-bottom: 0.5vh;
+}
+
+.content-box.slide-down {
+    transform: translateX(-100vw);
+    transition: transform 0.7s ease;
+}
+
+.content-box.slide-up {
+    transform: translateX(+100vw);
+    transition: transform 0.7s ease;
+}
+
+.content-box.active {
+    transform: translateX(0);
+}
+.image-plot {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.5s ease;
+    border: none;
+    border-radius: 8px 8px 8px 2px ;
+}
+
+.image-plot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+.image-plot:hover img {
+    transform: scale(1.1);
+    filter: brightness(110%);
+}
+
+.pict1 {object-position: center 12%;}
+.pict2 {object-position: center 15%;}
+.pict3 {object-position: center 12%;}
+.pict4 {object-position: center 12%;}
+.pict5 {object-position: center 20%;}
+.pict6 {object-position: center 0%;}
+.pict7 {object-position: center 26%;}
+.pict8 {object-position: center 4%;}
+.shadow-box-image {
+    background-image: linear-gradient(to left, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 100%);
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    transition: opacity 0.5s ease;
+}
+
+.shadow-box-image:hover {
+    opacity: 0.7;
+}
+
+.content-box-inside {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.title-box-inside {
+    color: rgb(255, 255, 255);
+    font-family: 'Franklin Gothic Heavy';
+    font-size: 2vh;
+    text-align: left;
+    width: 50%;
+    height: 6%;
+    position: absolute;
+    bottom: 2.5vh;
+    left: 1%;
+}
+
+.desc-box-inside {
+    color: rgb(255, 255, 255);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1vh;
+    text-align: left;
+    width: 100px;
+    height: 6%;
+    position: absolute;
+    bottom: 6%;
+    left: 1%;
+}
+
+.content-box-inside:hover {
+    opacity: 1;
+}
+    
+
+}

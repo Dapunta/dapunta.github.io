@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="frontend/assets/Dapunton2.png" type="image/x-icon">
+    <link rel="shortcut icon" href="frontend/assets/Dapunton2.png" type="image/x-icon">
+    <title>Dapunta</title>
+    <!-- Local File -->
+    <link rel="stylesheet" href="frontend/css/styles.css">
+    <link rel="stylesheet" href="frontend/css/styles2.css">
+    <link rel="stylesheet" href="frontend/css/stylesmobile.css">
+    <link rel="stylesheet" href="frontend/css/home_apps_mid.css">
+    <link rel="stylesheet" href="frontend/css/termux_apps_mid.css">
+    <!-- Fetch File -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"/>
+</head>
+<body>
+    <div class="full-box">
+        <div id="background-slide-button" class="spawn-background-slide-button">
+            
+        </div>
+        <div id="scale-box" class="scale-box">
+            <div class="content-box slide-down"></div>
+            <div class="content-box slide-up"></div>
+            <div class="content-box slide-down"></div>
+            <div class="content-box slide-up"></div>
+            <div class="content-box slide-down"></div>
+            <div class="content-box slide-up"></div>
+            <div class="content-box slide-down"></div>
+            <div class="content-box slide-up"></div>
+        </div>
+    </div>
+    <div class="center">
+        <div id="app-navigator" class="base-unshown-app">
+        </div>
+    </div>
+    <div class="center">
+        <div id="menu-box" class="menu-box">
+            <div id="spawn-app-home"      class="spawn-apk home"      onclick="toggleAppNavigation('home')"><i class="fa-solid fa-house"></i></div>
+            <div id="spawn-app-biodata"   class="spawn-apk biodata"   onclick="toggleAppNavigation('biodata')"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div id="spawn-app-termux"    class="spawn-apk termux"    onclick="toggleAppNavigation('termux')"><i class="fa-solid fa-terminal"></i></div>
+            <div id="spawn-app-project"   class="spawn-apk project"   onclick="toggleAppNavigation('project')"><i class="skill-icon devicon-github-original"></i></div>
+            <div id="spawn-app-portfolio" class="spawn-apk portfolio" onclick="toggleAppNavigation('portfolio')"><i class="fa-regular fa-file"></i></div>
+        </div>
+    </div>
+    <script src="frontend/javascript/script.js"></script>
+    <script src="frontend/javascript/script2.js"></script>
+    <script src="frontend/javascript/terminal.js"></script>
+</body>
+</html>
