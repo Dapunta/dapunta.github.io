@@ -7,11 +7,17 @@ function reveal() {
         const boxBio = document.getElementById(`box-item-biodata-${i}`);
         if (elementTop < windowHeight - elementVisible) {
             boxBio.classList.add("active");
+            scrollerOff();
         }
         else {
             boxBio.classList.remove("active");
         }
     }
+}
+
+function scrollerOff() {
+    const cond = document.getElementById('scroll-down-biodata');
+    cond.className = "biodata-scroll-box";
 }
 
 function isBiodataActive() {

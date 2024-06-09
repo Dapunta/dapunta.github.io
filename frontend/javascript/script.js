@@ -80,9 +80,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Disable All Action
 
-// document.addEventListener('contextmenu', function(event) {
-//     event.preventDefault();
-// });
+document.addEventListener('contextmenu', function(event) {
+    event.preventDefault();
+});
 
 document.addEventListener('DOMContentLoaded', function() {
     var elements = document.querySelectorAll('*');
