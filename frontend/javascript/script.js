@@ -78,6 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2000);
 });
 
+// Disable All Action
+
 // document.addEventListener('contextmenu', function(event) {
 //     event.preventDefault();
 // });

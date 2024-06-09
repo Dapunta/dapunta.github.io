@@ -7,7 +7,7 @@ const mySosmed = {
     'linkedin': '',
 }
 
-let homeApps, termuxApps;
+let homeApps, termuxApps, biodataApps;
 
 fetch('../frontend/html/home_apps_mid.html')
     .then(response => response.text())
@@ -16,6 +16,10 @@ fetch('../frontend/html/home_apps_mid.html')
 fetch('../frontend/html/termux_apps_mid.html')
     .then(response => response.text())
     .then(html => {termuxApps = html;})
+
+fetch('../frontend/html/biodata_apps_mid.html')
+    .then(response => response.text())
+    .then(html => {biodataApps = html;})
 
 function isLogoActive(app) {
     const nowApp = document.getElementById(`spawn-app-${app}`);
@@ -39,6 +43,7 @@ function activateApp(app, stat) {
         nowApp.className = 'base-shown-app';
         if (app == "termux") nowApp.innerHTML = termuxApps;
         else if (app == "home") nowApp.innerHTML = homeApps;
+        else if (app == "biodata") nowApp.innerHTML = biodataApps;
     }
     else {
         nowApp.className = 'base-unshown-app';

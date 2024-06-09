@@ -1,0 +1,706 @@
+body {
+    margin: 0;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.full-size {
+    background-color: rgb(110, 110, 110);
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Desktop */
+
+@media screen and (min-width: 500px) {
+
+/* Box Container */
+
+.type-app-biodata {
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 60vw;
+    height: 60vh;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    top: 15%;
+    border: none;
+    border-radius: 15px;
+    backdrop-filter: blur(20px);
+    pointer-events: all;
+    opacity: 1;
+    animation: fadeIn 0.2s ease forwards;
+}
+
+.scroll-box-biodata {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+}
+
+.scroll-item-biodata {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: start;
+}
+
+.box-item-biodata {
+    /* background-color: rgb(129, 129, 129); */
+    width: 100%;
+    height: 100%;
+    /* border: none;
+    border-radius: 10px; */
+}
+
+.box-item-biodata.scroll-true {
+    position: relative;
+    translate: 0 100%;
+    opacity: 0;
+    transition: 1s all ease;
+}
+
+.box-item-biodata.active{
+    translate: 0 0;
+    opacity: 1;
+}
+
+/* All Section */
+
+.box-section-biodata {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 15px;
+    display: flex;
+}
+
+.header-section-biodata {
+    /* background-color: blueviolet; */
+    width: 100%;
+}
+
+.body-section-biodata {
+    /* background-color: rgb(43, 107, 226); */
+    width: 100%;
+}
+
+/* Background Image */
+.background {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* Section 1 */
+
+.box-section-biodata.section1 {
+    background-image: url('../assets/overlay_yaemiko.png');
+    background-position: right;
+}
+
+.box-content-section1 {
+    /* background-color: rgb(255, 0, 0); */
+    position: relative;
+    top: 13%;
+    left: 10%;
+    width: 55%;
+    height: 70%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+.box-content-section1 h1 {
+    margin: 0;
+    color: #ff9dad;
+    font-size: 200%;
+}
+
+.description-biodata {
+    margin-top: 8%;
+    /* background-color: rebeccapurple; */
+    width: 100%;
+    height: 70%;
+    display: flex;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.description-biodata span {
+    color: #ffffff;
+    font-size: 150%;
+    text-shadow: 0 0 10px #000000;
+}
+
+/* Section 2 */
+
+.box-section-biodata.section2 {
+    background-image: url('../assets/overlay_nahida.png');
+    background-position: left;
+}
+
+.box-content-section2 {
+    /* background-color: aqua; */
+    position: relative;
+    top: 10%;
+    left: 50%;
+    width: 40%;
+    height: 90%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.box-content-section2 h1 {
+    margin: 0;
+    color: #c2ffc4;
+    font-size: 200%;
+    text-align: right;
+}
+
+.education-box {
+    /* background-color: #e85739; */
+    width: 100%;
+    height: 80%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+}
+
+.education-item {
+    /* background-color: #a7d2ff; */
+    width: 100%;
+    margin-bottom: 5%;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    transition: all 0.3s ease;
+}
+
+.education-item:hover {
+    transform: translateY(10%);
+}
+
+.education-item h3 {
+    margin: 0;
+    color: #c2ffc4;
+    font-size: 90%;
+    text-align: right;
+    text-shadow: 0 0 10px rgb(0, 0, 0);
+}
+
+.education-item span {
+    margin: 0;
+    color: #ffffff;
+    font-size: 120%;
+    text-align: right;
+    text-shadow: 0 0 10px rgb(0, 0, 0);
+}
+
+/* Section 3 */
+
+.box-section-biodata.section3 {
+    background-image: url('../assets/overlay_ganyu.png');
+    background-position: right;
+}
+
+.box-content-section3 {
+    /* background-color: aqua; */
+    position: relative;
+    top: 10%;
+    left: 10%;
+    width: 55%;
+    height: 70%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+.box-content-section3 h1 {
+    margin: 0;
+    color: #a7d2ff;
+    font-size: 200%;
+}
+
+.hobby-box {
+    /* background-color: blue; */
+    margin-top: 5%;
+    margin-left: 4%;
+    width: 100%;
+    height: 80%;
+}
+
+.hobby-box-item {
+    /* background-color: white; */
+    margin-bottom: 2%;
+    width: 100%;
+    height: 15%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+
+.hobby-name {
+    /* background-color: blue; */
+    height: 100%;
+    width: 13%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.hobby-name span {
+    text-align: center;
+    color: white;
+    font-size: 120%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-shadow: 0 0 10px rgb(0, 0, 0);
+    overflow: hidden;
+}
+
+.hobby-bar {
+    background-color: #89b3df;
+    position: relative;
+    margin-left: 5%;
+    top: 8%;
+    height: 20%;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+.hobby-bar:hover {
+    filter: brightness(80%);
+}
+
+.hobby-bar.coding {width: 70%;}
+.hobby-bar.music {width: 50%;}
+.hobby-bar.gadget {width: 30%;}
+.hobby-bar.riding {width: 10%;}
+.hobby-bar.game {width: 1%;}
+
+/* Section 4 */
+
+.box-section-biodata.section4 {
+    background-image: url('../assets/overlay_hutao.png');
+    background-position: left;
+}
+
+.box-content-section4 {
+    /* background-color: aqua; */
+    position: relative;
+    top: 10%;
+    left: 60%;
+    width: 30%;
+    height: 80%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+.box-content-section4 h1 {
+    margin: 0;
+    color: #e85739;
+    font-size: 200%;
+    text-align: right;
+}
+
+.skill-box {
+    /* background-color: red; */
+    margin-top: 10%;
+    width: 100%;
+    height: 80%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.skill-item {
+    /* background-color: #a7d2ff; */
+    margin-bottom: 5%;
+    /* width: 100%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 0.3s ease;
+}
+
+.skill-item:hover {
+    transform: translateX(-5%);
+    filter: brightness(150%);
+}
+
+.skill-item h3 {
+    color: #c53c21;
+    margin: 0;
+    font-size: 100%;
+    text-align: right;
+    text-shadow: 0 0 10px rgb(0, 0, 0);
+}
+
+.skill-item span {
+    color: #ffffff;
+    margin: 0;
+    font-size: 100%;
+    text-align: right;
+    text-shadow: 0 0 10px rgb(0, 0, 0);
+}
+
+}
+
+/* Mobile */
+
+@media screen and (max-width: 500px) {
+
+/* Box Container */
+
+.type-app-biodata {
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 80vw;
+    height: 60vh;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    top: 18%;
+    border: none;
+    border-radius: 15px;
+    backdrop-filter: blur(20px);
+    pointer-events: all;
+    opacity: 1;
+    animation: fadeIn 0.2s ease forwards;
+}
+
+.scroll-box-biodata {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+}
+
+.scroll-item-biodata {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: start;
+}
+
+.box-item-biodata {
+    /* background-color: rgb(129, 129, 129); */
+    width: 100%;
+    height: 100%;
+    /* border: none;
+    border-radius: 10px; */
+}
+
+.box-item-biodata.scroll-true {
+    position: relative;
+    translate: 0 100%;
+    opacity: 0;
+    transition: 1s all ease;
+}
+
+.box-item-biodata.active{
+    translate: 0 0;
+    opacity: 1;
+}
+
+/* All Section */
+
+.box-section-biodata {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 15px;
+    display: flex;
+}
+
+.header-section-biodata {
+    /* background-color: blueviolet; */
+    width: 100%;
+}
+
+.body-section-biodata {
+    /* background-color: rgb(43, 107, 226); */
+    width: 100%;
+}
+
+/* Background Image */
+.background {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* Section 1 */
+
+.box-section-biodata.section1 {
+    background-image: url('../assets/overlay_yaemiko.png');
+    background-position: 85%;
+}
+
+.box-content-section1 {
+    /* background-color: rgb(255, 0, 0); */
+    position: relative;
+    top: 13%;
+    left: 10%;
+    width: 70%;
+    height: 70%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+.box-content-section1 h1 {
+    margin: 0;
+    color: #ff9dad;
+    font-size: 150%;
+}
+
+.description-biodata {
+    margin-top: 15%;
+    /* background-color: rebeccapurple; */
+    width: 100%;
+    height: 70%;
+    display: flex;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.description-biodata span {
+    color: #ffffff;
+    font-size: 90%;
+    text-shadow: 0 0 10px #000000;
+}
+
+/* Section 2 */
+
+.box-section-biodata.section2 {
+    background-image: url('../assets/overlay_nahida.png');
+    background-position: 10%;
+}
+
+.box-content-section2 {
+    /* background-color: aqua; */
+    position: relative;
+    top: 10%;
+    left: 25%;
+    width: 70%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.box-content-section2 h1 {
+    margin: 0;
+    color: #c2ffc4;
+    font-size: 150%;
+    text-align: right;
+}
+
+.education-box {
+    /* background-color: #e85739; */
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin-top: 15%;
+    display: flex;
+    flex-direction: column;
+}
+
+.education-item {
+    /* background-color: #a7d2ff; */
+    width: 100%;
+    margin-bottom: 8%;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    transition: all 0.3s ease;
+}
+
+.education-item:hover {
+    transform: translateY(10%);
+}
+
+.education-item h3 {
+    margin: 0;
+    color: #c2ffc4;
+    font-size: 60%;
+    text-align: right;
+    text-shadow: 0 0 10px rgb(0, 0, 0);
+}
+
+.education-item span {
+    margin: 0;
+    color: #ffffff;
+    font-size: 90%;
+    text-align: right;
+    text-shadow: 0 0 10px rgb(0, 0, 0);
+}
+
+/* Section 3 */
+
+.box-section-biodata.section3 {
+    background-image: url('../assets/overlay_ganyu.png');
+    background-position: 88%;
+}
+
+.box-content-section3 {
+    /* background-color: aqua; */
+    position: relative;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 70%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+.box-content-section3 h1 {
+    margin: 0;
+    color: #a7d2ff;
+    font-size: 150%;
+}
+
+.hobby-box {
+    /* background-color: blue; */
+    margin-top: 12%;
+    width: 100%;
+    height: 80%;
+}
+
+.hobby-box-item {
+    /* background-color: white; */
+    margin-bottom: 2%;
+    width: 100%;
+    height: 15%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+
+.hobby-name {
+    /* background-color: blue; */
+    height: 100%;
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.hobby-name span {
+    text-align: center;
+    color: white;
+    font-size: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-shadow: 0 0 10px rgb(0, 0, 0);
+    overflow: hidden;
+}
+
+.hobby-bar {
+    background-color: #89b3df;
+    position: relative;
+    margin-left: 5%;
+    top: 8%;
+    height: 20%;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+.hobby-bar:hover {
+    filter: brightness(80%);
+}
+
+.hobby-bar.coding {width: 70%;}
+.hobby-bar.music {width: 50%;}
+.hobby-bar.gadget {width: 30%;}
+.hobby-bar.riding {width: 10%;}
+.hobby-bar.game {width: 1%;}
+
+/* Section 4 */
+
+.box-section-biodata.section4 {
+    background-image: url('../assets/overlay_hutao.png');
+    background-position: 20%;
+}
+
+.box-content-section4 {
+    /* background-color: aqua; */
+    position: relative;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+.box-content-section4 h1 {
+    margin: 0;
+    color: #e85739;
+    font-size: 150%;
+    text-align: right;
+}
+
+.skill-box {
+    /* background-color: red; */
+    margin-top: 13%;
+    width: 100%;
+    height: 90%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.skill-item {
+    /* background-color: #a7d2ff; */
+    margin-bottom: 7%;
+    /* width: 100%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 0.3s ease;
+}
+
+.skill-item:hover {
+    transform: translateX(-5%);
+    filter: brightness(150%);
+}
+
+.skill-item h3 {
+    color: #c53c21;
+    margin: 0;
+    font-size: 80%;
+    text-align: right;
+    text-shadow: 0 0 10px rgb(0, 0, 0);
+}
+
+.skill-item span {
+    color: #ffffff;
+    margin: 0;
+    font-size: 90%;
+    text-align: right;
+    text-shadow: 0 0 10px rgb(0, 0, 0);
+}
+
+}
