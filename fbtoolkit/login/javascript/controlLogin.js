@@ -44,7 +44,7 @@ async function setter(url) {
         }
     }
     catch (error) {
-        errorLogin('Wrong credentials!');
+        errorLogin(error);
     }
 }
 
