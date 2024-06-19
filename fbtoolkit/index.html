@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="menu/css/styleMenu.css">
+    <!-- Fetch File -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"/>
+    <title>FBToolkit</title>
+</head>
+<body>
+    <div class="full-size">
+        <div class="background-layer-1"></div>
+        <div class="navigation-container">
+            <h1 class="title-container">FBToolkit</h1>
+            <div class="info-pojok-container">
+                <h4 id="user-email" class="email-pojok">tester@dapunta.com</h4>
+                <span id="user-id" class="id-pojok"></span>
+                <div id="pojok-toggle" class="popup-container inactive">
+                    <span class="icon-pojok"><i class="inner-shadow fa-solid fa-question"></i></span>
+                    <span class="icon-pojok"><i class="inner-shadow fa-solid fa-power-off" onclick="Logout()"></i></span>
+                </div>
+                <div id="profile-pojok" class="picture-container-pojok inactive">
+                    <img id="profile-image-1" onclick="pojokToggle()"></img>
+                </div>
+            </div>
+        </div>
+        <div class="profile-container">
+            <div class="picture-container">
+                <img id="profile-image-2"></img>
+            </div>
+            <div class="description-container">
+                <div class="name-container"><h1 id="name"></h1></div>
+                <div class="button-container">
+                    <span id="friend"></span>
+                    <span id="follower"></span>
+                    <span id="post"></span>
+                </div>
+            </div>
+        </div>
+        <div id="menu-container" class="menu-container"></div>
+        <span class="made-by-dapunta">Made With <i class="fa-solid fa-heart"></i> By Dapunta</span>
+    </div>
+
+    <script src="menu/javascript/menu.js"></script>
+</body>
+</html>
+
+<!--
+100 #F3FBFF
+200 #D6EDFF
+300 #A0D4FF
+400 #57B0FB
+500 #1292EE
+600 #0077CC
+700 #005CA4
+800 #034077
+900 #002651
+-->
