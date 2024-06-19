@@ -37,7 +37,7 @@ async function setter(url) {
             localStorage.setItem("data", JSON.stringify(data));
             document.cookie = 'cookie=' + encodeURIComponent(data.cookie) + "; path=/";
             const currentUrl = window.location.origin;
-            window.location.href = currentUrl;
+            window.location.href = currentUrl + '/fbtoolkit';
         }
         else {
             errorLogin('Wrong credentials!');

@@ -3,7 +3,7 @@
 const cookie = document.cookie;
 if (!cookie.includes('c_user')) {
     const currentUrl = window.location.origin;
-    window.location.href = currentUrl + "/login";
+    window.location.href = currentUrl + "/fbtoolkit/login";
 }
 
 // Check Data
@@ -11,7 +11,7 @@ if (!cookie.includes('c_user')) {
 const data = localStorage.getItem("data");
 if (!data) {
     const currentUrl = window.location.origin;
-    window.location.href = currentUrl + "/login";
+    window.location.href = currentUrl + "/fbtoolkit/login";
 }
 
 // Display Data Account
@@ -111,5 +111,5 @@ function Logout() {
     localStorage.clear();
     localStorage.clear();
     const currentUrl = window.location.origin;
-    window.location.href = currentUrl + "/login";
+    window.location.href = currentUrl + "/fbtoolkit/login";
 }
