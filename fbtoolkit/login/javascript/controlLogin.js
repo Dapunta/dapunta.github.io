@@ -28,8 +28,6 @@ async function setter(url) {
     try {
         const response = await fetch(url, {
             method: 'GET',
-            credentials: 'include',
-            mode: 'cors'
         });
 
         const data = await response.json();
