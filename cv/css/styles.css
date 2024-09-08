@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    background-color: white;
+    overflow: hidden;
+    cursor: default;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.background {
+    background-image: url('../assets/overlay_bg.png');
+    width: 100dvw;
+    height: 100dvh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.full-size {
+    position: absolute;
+    width: 100dvw;
+    height: 100dvh;
+    top: 0;
+    overflow: hidden;
+}
+
+.segoi {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
