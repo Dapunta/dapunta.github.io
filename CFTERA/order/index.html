@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meja A4 - Resto Nusantara</title>
+    <!-- CDN Style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
+    <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"/>
+    <!-- Local Style -->
+    <link rel="icon" href="../assets/global/icon_cftera.png" type="image/png">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/idle.css">
+</head>
+<body class="poppins">
+    <div class="header-container">
+        <div class="scroller-image-container">
+            <div class="image-header-container"><img src="../assets/background/layout_1_edit.jpg"></div>
+            <div class="image-header-container"><img src="../assets/background/layout_2_edit.jpg"></div>
+            <div class="image-header-container"><img src="../assets/background/layout_3_edit.jpg"></div>
+            <div class="image-header-container"><img src="../assets/background/layout_4_edit.jpg"></div>
+        </div>
+        <div class="scroller-dot-container">
+            <div class="dot-item"></div>
+            <div class="dot-item"></div>
+            <div class="dot-item"></div>
+            <div class="dot-item"></div>
+        </div>
+        <div class="nomor-meja-container">
+            <span>A4</span>
+        </div>
+        <div class="search-bar-container">
+            <input type="text" id="searchInput" class="search-menu" placeholder="Mau cari menu apa ?" autocomplete="off" autocapitalize="off" autofocus="off" autofill="off" spellcheck="false">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+    </div>
+    <div class="main-container">
+
+        <!-- Diskon -->
+        <div class="container-menu-diskon">
+            <span class="title-menu-category">Diskon Spesial</span>
+            <div class="scroller-menu-diskon">
+                <div class="produk-menu-diskon">
+                    <div class="image-container">
+                        <img src="../assets/product/food/rendang.jpg">
+                    </div>
+                    <div class="info-container">
+                        <span class="menu-name">Rendang Daging Sapi</span>
+                        <span class="real-price"><del>Rp 35.000</del></span>
+                        <span class="price">Rp 28.000</span>
+                        <div class="add-button-container">
+                            <button type="button">Add</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="produk-menu-diskon">
+                    <div class="image-container">
+                        <img src="../assets/product/food/rawon.jpg">
+                    </div>
+                    <div class="info-container">
+                        <span class="menu-name">Rawon Daging Sapi</span>
+                        <span class="real-price"><del>Rp 40.000</del></span>
+                        <span class="price">Rp 32.000</span>
+                        <div class="add-button-container">
+                            <button type="button">Add</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="produk-menu-diskon">
+                    <div class="image-container">
+                        <img src="../assets/product/food/gulai.jpg">
+                    </div>
+                    <div class="info-container">
+                        <span class="menu-name">Gulai Ayam Bumbu Merah</span>
+                        <span class="real-price"><del>Rp 30.000</del></span>
+                        <span class="price">Rp 24.000</span>
+                        <div class="add-button-container">
+                            <button type="button">Add</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="produk-menu-diskon">
+                    <div class="image-container">
+                        <img src="../assets/product/food/kwetiau.jpg">
+                    </div>
+                    <div class="info-container">
+                        <span class="menu-name">Kwetiau Goreng Telur Orak-Arik</span>
+                        <span class="real-price"><del>Rp 25.000</del></span>
+                        <span class="price">Rp 20.000</span>
+                        <div class="add-button-container">
+                            <button type="button">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reguler -->
+        <div class="container-menu-reguler">
+            <span class="title-menu-category">Paling Laris</span>
+            <div class="scroller-menu-reguler">
+                <div id="NSG0000001" class="produk-menu-reguler">
+                    <div class="image-container">
+                        <img src="../assets/product/food/nasi_goreng.jpg">
+                    </div>
+                    <div class="info-container">
+                        <span class="menu-name">Nasi Goreng Daging Sapi</span>
+                        <span class="real-price"><del></del></span>
+                        <span class="price">Rp 24.000</span>
+                        <div class="add-button-container">
+                            <button type="button" class="add-button">Add</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="KWT0000002" class="produk-menu-reguler">
+                    <div class="image-container">
+                        <img src="../assets/product/food/kwetiau.jpg">
+                    </div>
+                    <div class="info-container">
+                        <span class="menu-name">Kwetiau Goreng Telur Orak-Arik</span>
+                        <span class="real-price"><del>Rp 25.000</del></span>
+                        <span class="price">Rp 20.000</span>
+                        <div class="add-button-container">
+                            <button type="button" class="add-button">Add</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="AGK0000003" class="produk-menu-reguler">
+                    <div class="image-container">
+                        <img src="../assets/product/food/ayam_goreng.jpg">
+                    </div>
+                    <div class="info-container">
+                        <span class="menu-name">Ayam Goreng<br>Kremes</span>
+                        <span class="real-price"><del></del></span>
+                        <span class="price">Rp 19.000</span>
+                        <div class="add-button-container">
+                            <button type="button" class="add-button">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reguler -->
+        <div class="container-menu-reguler">
+            <span class="title-menu-category">Seafood</span>
+            <div class="scroller-menu-reguler">
+                <div id="KPT0000004" class="produk-menu-reguler">
+                    <div class="image-container">
+                        <img src="../assets/product/food/kepiting.jpg">
+                    </div>
+                    <div class="info-container">
+                        <span class="menu-name">Kepiting Saus<br>Tiram</span>
+                        <span class="real-price"><del></del></span>
+                        <span class="price">Rp 45.000</span>
+                        <div class="add-button-container">
+                            <button type="button" class="add-button">Add</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="GRM0000005" class="produk-menu-reguler">
+                    <div class="image-container">
+                        <img src="../assets/product/food/gurame.jpg">
+                    </div>
+                    <div class="info-container">
+                        <span class="menu-name">Gurame Bakar<br>Madu</span>
+                        <span class="real-price"><del></del></span>
+                        <span class="price">Rp 40.000</span>
+                        <div class="add-button-container">
+                            <button type="button" class="add-button">Add</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="CMT0000006" class="produk-menu-reguler">
+                    <div class="image-container">
+                        <img src="../assets/product/food/cumi.jpg">
+                    </div>
+                    <div class="info-container">
+                        <span class="menu-name">Cumi Tepung Lada Hitam</span>
+                        <span class="real-price"><del></del></span>
+                        <span class="price">Rp 38.000</span>
+                        <div class="add-button-container">
+                            <button type="button" class="add-button">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reguler -->
+        <div class="container-menu-reguler">
+            <span class="title-menu-category">Jus</span>
+            <div class="scroller-menu-reguler">
+                <div id="ALP0000007" class="produk-menu-reguler">
+                    <div class="image-container">
+                        <img src="../assets/product/drink/alpukat.jpg">
+                    </div>
+                    <div class="info-container">
+                        <span class="menu-name">Jus<br>Alpukat</span>
+                        <span class="real-price"><del></del></span>
+                        <span class="price">Rp 15.000</span>
+                        <div class="add-button-container">
+                            <button type="button" class="add-button">Add</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="STR0000008" class="produk-menu-reguler">
+                    <div class="image-container">
+                        <img src="../assets/product/drink/stroberi.jpg">
+                    </div>
+                    <div class="info-container">
+                        <span class="menu-name">Jus<br>Stroberi</span>
+                        <span class="real-price"><del></del></span>
+                        <span class="price">Rp 20.000</span>
+                        <div class="add-button-container">
+                            <button type="button" class="add-button">Add</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="AGR0000009" class="produk-menu-reguler">
+                    <div class="image-container">
+                        <img src="../assets/product/drink/anggur.jpg">
+                    </div>
+                    <div class="info-container">
+                        <span class="menu-name">Jus<br>Anggur</span>
+                        <span class="real-price"><del></del></span>
+                        <span class="price">Rp 22.000</span>
+                        <div class="add-button-container">
+                            <button type="button" class="add-button">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-container inactive">
+        <div class="footer-button">
+            <span class="total-item"></span>
+            <span class="total-price"></span>
+        </div>
+    </div>
+
+    <script src="javascript/style.js"></script>
+    <script src="javascript/counter.js"></script>
+</body>
+</html>

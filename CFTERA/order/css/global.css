@@ -1,0 +1,16 @@
+body {
+    background-color: #ffffff;
+    overflow: auto;
+    margin: 0;
+    width: 100dvw;
+    height: 100dvh;
+    position: relative;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.poppins {
+    font-family: "Poppins", sans-serif;
+}
