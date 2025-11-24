@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Three.js Masking Demo - 3 Modes</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: #111; font-family: sans-serif; }
+        canvas { display: block; }
+        
+        /* UI Container */
+        #ui-container {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+            border: 1px solid #555;
+        }
+
+        button {
+            padding: 10px 15px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 12px;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        /* Warna Status Tombol */
+        .btn-inactive { background: #333; color: #888; }
+        .btn-active { background: #00d2ff; color: #000; box-shadow: 0 0 10px #00d2ff; }
+        
+        #status {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: #ccc;
+            pointer-events: none;
+            background: rgba(0,0,0,0.5);
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div id="ui-container">
+        <button id="btn-noeffect" class="btn-active">1. No Effect (Asli)</button>
+        <button id="btn-nomask" class="btn-inactive">2. No Mask (Global)</button>
+        <button id="btn-mask" class="btn-inactive">3. Mask (Local)</button>
+    </div>
+
+    <div id="status">
+        <strong>Mode Info:</strong><br>
+        <span id="info-text">Menampilkan warna asli tanpa filter.</span>
+    </div>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+        import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
+        import { MaskPass, ClearMaskPass } from 'three/addons/postprocessing/MaskPass.js';
+        import { SepiaShader } from 'three/addons/shaders/SepiaShader.js';
+        import { CopyShader } from 'three/addons/shaders/CopyShader.js';
+
+        // ---------------------------------------------------------
+        // 1. SETUP DASAR (Scene, Camera, Renderer)
+        // ---------------------------------------------------------
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.autoClear = false; // Penting! Kita atur clear manual di composer
+        document.body.appendChild(renderer.domElement);
+
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 6;
+
+        // ---------------------------------------------------------
+        // 2. MEMBUAT SCENE (Dipisah jadi Base & Mask)
+        // ---------------------------------------------------------
+        const sceneBase = new THREE.Scene(); // Isi: Background (Kotak)
+        const sceneMask = new THREE.Scene(); // Isi: Target Masking (Bola)
+
+        // Objek 1: KUBUS MERAH (Masuk ke sceneBase)
+        const cube = new THREE.Mesh(
+            new THREE.BoxGeometry(2, 2, 2),
+            new THREE.MeshBasicMaterial({ color: 0xff0000 })
+        );
+        cube.position.x = -2.5;
+        sceneBase.add(cube);
+
+        // Objek 2: BOLA BIRU (Masuk ke sceneMask)
+        const sphere = new THREE.Mesh(
+            new THREE.SphereGeometry(1.2, 32, 32),
+            new THREE.MeshBasicMaterial({ color: 0x0000ff })
+        );
+        sphere.position.x = 2.5;
+        sceneMask.add(sphere);
+
+        // ---------------------------------------------------------
+        // 3. SETUP RENDER TARGET (Wajib Stencil Buffer = true)
+        // ---------------------------------------------------------
+        const parameters = {
+            minFilter: THREE.LinearFilter,
+            magFilter: THREE.LinearFilter,
+            format: THREE.RGBAFormat,
+            stencilBuffer: true // <--- SYARAT WAJIB MASK PASS
+        };
+        const renderTarget = new THREE.WebGLRenderTarget(window.innerWidth, window.innerHeight, parameters);
+
+        // ---------------------------------------------------------
+        // 4. PERSIAPAN "PASS" (Bahan-bahan Compositing)
+        // ---------------------------------------------------------
+        
+        // Bahan A: Render Scene Background (Kotak)
+        const renderBasePass = new RenderPass(sceneBase, camera);
+        
+        // Bahan B: Render Scene Target (Bola)
+        // clear = false artinya "Gambar bola ini di atas gambar kotak, jangan hapus gambar kotak"
+        const renderMaskObjPass = new RenderPass(sceneMask, camera);
+        renderMaskObjPass.clear = false; 
+        
+        // Bahan C: Efek
+        const effectSepia = new ShaderPass(SepiaShader);
+        const effectCopy = new ShaderPass(CopyShader); // Untuk output ke layar
+
+        // Bahan D: Masking Tools
+        const maskPass = new MaskPass(sceneMask, camera);
+        maskPass.inverse = false; // false = Efek DI DALAM Bola
+        const clearMaskPass = new ClearMaskPass();
+
+        // ---------------------------------------------------------
+        // 5. MERAKIT 3 JALUR PIPA (COMPOSER)
+        // ---------------------------------------------------------
+
+        // === MODE 1: NO EFFECT (Asli) ===
+        // Urutan: Gambar Kotak -> Gambar Bola -> Output
+        const composerOriginal = new EffectComposer(renderer, renderTarget);
+        composerOriginal.addPass(renderBasePass);
+        composerOriginal.addPass(renderMaskObjPass);
+        composerOriginal.addPass(effectCopy);
+
+        // === MODE 2: NO MASK (Global Sepia) ===
+        // Urutan: Gambar Kotak -> Gambar Bola -> Siram Sepia ke SEMUA -> Output
+        const composerGlobal = new EffectComposer(renderer, renderTarget);
+        composerGlobal.addPass(renderBasePass);
+        composerGlobal.addPass(renderMaskObjPass);
+        composerGlobal.addPass(effectSepia);
+        composerGlobal.addPass(effectCopy);
+
+        // === MODE 3: USE MASK (Local Sepia) ===
+        // Urutan: Gambar Kotak -> Gambar Bola -> Pasang Topeng Bola -> Siram Sepia -> Copot Topeng -> Output
+        const composerMask = new EffectComposer(renderer, renderTarget);
+        composerMask.addPass(renderBasePass);      // 1. Render Background
+        composerMask.addPass(renderMaskObjPass);   // 2. Render Objek Target
+        composerMask.addPass(maskPass);            // 3. Mulai Masking (Batasi area efek)
+        composerMask.addPass(effectSepia);         // 4. Efek Sepia (Tertahan topeng)
+        composerMask.addPass(clearMaskPass);       // 5. Selesai Masking
+        composerMask.addPass(effectCopy);          // 6. Tampilkan
+
+        // ---------------------------------------------------------
+        // 6. LOGIKA SWITCH & UI
+        // ---------------------------------------------------------
+        let currentComposer = composerOriginal; // Default
+
+        const btnNoEffect = document.getElementById('btn-noeffect');
+        const btnNoMask = document.getElementById('btn-nomask');
+        const btnMask = document.getElementById('btn-mask');
+        const infoText = document.getElementById('info-text');
+
+        function setActiveButton(activeBtn, text) {
+            // Reset semua tombol
+            [btnNoEffect, btnNoMask, btnMask].forEach(btn => {
+                btn.className = 'btn-inactive';
+            });
+            // Set tombol aktif
+            activeBtn.className = 'btn-active';
+            infoText.innerText = text;
+        }
+
+        btnNoEffect.addEventListener('click', () => {
+            currentComposer = composerOriginal;
+            setActiveButton(btnNoEffect, "Menampilkan warna asli tanpa filter.");
+        });
+
+        btnNoMask.addEventListener('click', () => {
+            currentComposer = composerGlobal;
+            setActiveButton(btnNoMask, "Efek Sepia mengenai SELURUH layar (Global).");
+        });
+
+        btnMask.addEventListener('click', () => {
+            currentComposer = composerMask;
+            setActiveButton(btnMask, "Efek Sepia HANYA mengenai Bola (Masked).");
+        });
+
+        // ---------------------------------------------------------
+        // 7. ANIMASI LOOP
+        // ---------------------------------------------------------
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Animasi putar
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+            sphere.rotation.y += 0.02;
+            sphere.rotation.x -= 0.01;
+
+            // Render composer yang sedang dipilih
+            currentComposer.render();
+        }
+
+        // Handle Resize
+        window.addEventListener('resize', () => {
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+            camera.aspect = w / h;
+            camera.updateProjectionMatrix();
+            renderer.setSize(w, h);
+            
+            // Resize semua composer
+            composerOriginal.setSize(w, h);
+            composerGlobal.setSize(w, h);
+            composerMask.setSize(w, h);
+        });
+
+        animate();
+    </script>
+</body>
+</html>
