@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Three.js SSAO - Headlamp Lighting</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: #000; }
+        canvas { display: block; }
+    </style>
+    
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+        import { SSAOPass } from 'three/addons/postprocessing/SSAOPass.js';
+        import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+
+        // 1. SETUP RENDERER
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(width, height);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.outputColorSpace = THREE.SRGBColorSpace; 
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.1;
+        
+        document.body.appendChild(renderer.domElement);
+
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xdddddd);
+
+        const camera = new THREE.PerspectiveCamera(65, width / height, 100, 700);
+        camera.position.z = 500;
+
+        scene.add(camera);
+
+        // ---------------------------------------------------------------------
+        // 2. LIGHTING (METODE HEADLAMP / SENTER)
+        // ---------------------------------------------------------------------
+        
+        // Cahaya Ambien (Dasar)
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); 
+        scene.add(ambientLight);
+
+        // Cahaya Utama (Directional)
+        const dirLight = new THREE.DirectionalLight(0xffffff, 2.0); 
+        
+        // Posisi (0, 0, 1) relatif terhadap kamera artinya cahaya datang dari "lensa" kamera
+        dirLight.position.set(0, 0, 1); 
+        
+        // Attach ke kamera
+        camera.add(dirLight);
+
+        // ---------------------------------------------------------------------
+        // 3. OBJECTS
+        // ---------------------------------------------------------------------
+        const group = new THREE.Group();
+        scene.add(group);
+        const geometry = new THREE.BoxGeometry(40, 40, 40);
+        
+        for (let i = 0; i < 160; i++) {
+            const material = new THREE.MeshStandardMaterial({
+                color: new THREE.Color().setHSL(Math.random(), 1.0, 0.6),
+                roughness: 0.5,
+                metalness: 0.1
+            });
+            const mesh = new THREE.Mesh(geometry, material);
+            mesh.position.set(
+                Math.random() * 250 - 125,
+                Math.random() * 250 - 125,
+                Math.random() * 250 - 125
+            );
+            mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
+            group.add(mesh);
+        }
+
+        // 4. POST-PROCESSING
+        const composer = new EffectComposer(renderer);
+        
+        const renderPass = new RenderPass(scene, camera);
+        composer.addPass(renderPass);
+
+        const ssaoPass = new SSAOPass(scene, camera, width, height);
+        ssaoPass.kernelRadius = 16;
+        ssaoPass.minDistance = 0.005;
+        ssaoPass.maxDistance = 0.1;
+        composer.addPass(ssaoPass);
+
+        // 5. GUI CONTROLS
+        const gui = new GUI({ title: 'SSAO Controls' });
+
+        const modes = {
+            'Default (Color + AO)': SSAOPass.OUTPUT.Default,
+            'SSAO Only (Shadows)': SSAOPass.OUTPUT.SSAO,
+            'SSAO + Blur': SSAOPass.OUTPUT.Blur,
+            'Beauty (No AO)': SSAOPass.OUTPUT.Beauty,
+            'Depth Info': SSAOPass.OUTPUT.Depth,
+            'Normal Info': SSAOPass.OUTPUT.Normal
+        };
+
+        const params = {
+            selectedMode: 'Default (Color + AO)', 
+
+            // Radius pencarian bayangan (Ukuran kuas bayangan).
+            // Kecil (misal 4) = Bayangan tajam & sempit. 
+            // Besar (misal 32) = Bayangan menyebar luas & lembut (soft).
+            kernelRadius: 16, 
+
+            // Batas jarak terdekat kamera untuk mulai merender bayangan.
+            // Berguna untuk mencegah "noise" pada permukaan yang terlalu dekat/datar.
+            minDistance: 0.005, 
+
+            // Batas jarak terjauh efek ini bekerja.
+            // Bayangan akan memudar dan menghilang jika jarak objek lebih jauh dari nilai ini.
+            // (Agar background/langit tidak ikut kena bayangan).
+            maxDistance: 0.1 
+        };
+
+        gui.add(params, 'selectedMode', Object.keys(modes)).onChange(key => {
+            ssaoPass.output = modes[key];
+        });
+
+        gui.add(ssaoPass, 'kernelRadius').min(0).max(32).name('kernelRadius');
+        gui.add(ssaoPass, 'minDistance').min(0.001).max(0.02).name('minDistance');
+        gui.add(ssaoPass, 'maxDistance').min(0.01).max(0.3).name('maxDistance');
+
+        // 6. ANIMASI
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true; 
+        controls.dampingFactor = 0.05;
+
+        window.addEventListener('resize', () => {
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+            camera.aspect = w / h;
+            camera.updateProjectionMatrix();
+            renderer.setSize(w, h);
+            composer.setSize(w, h);
+            ssaoPass.setSize(w, h);
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            composer.render();
+        }
+
+        animate();
+    </script>
+</body>
+</html>
